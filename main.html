@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset = "UTF-8">
+        <link rel="stylesheet" href="main.css">
         <title>TO DO LIST</title>
     </head>
     <body>
@@ -9,13 +10,15 @@
         <form>
             <input type="text" placeholder="할 일" class="todo">
             <button type="submit" class="button">추가</button>
-            <button type="submit" class="clear">전체삭제</button>
         </form>
-        <div class="list" style="border: 1px solid black">
-            <ul>
+        <div class="list">
+            <ol type="1" start="1">
 
-            </ul>
+            </ol>
+        
         </div>
+        <button type="submit" class="s_clear">선택삭제</button>
+        <button type="submit" class="clear">전체삭제</button>
         <script src="todolist.js" defer></script>
     </body>
 </html>
