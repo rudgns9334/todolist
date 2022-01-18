@@ -6,6 +6,20 @@ ol {
     font-size: 22px;
 }
 
+li {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  background-color: burlywood;
+  width: 50%;
+  margin: 0 auto;
+}
+
 .list {
     background-color: white;
     border: 1px solid black;
