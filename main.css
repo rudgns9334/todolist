@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(154, 182, 182);
+    background-color: rgb(200, 236, 236);
 }
 
 ol {
@@ -14,8 +14,13 @@ h1 {
   text-align: center;
 }
 
+#modify {
+  display: none;
+
+}
+
 .container {
-  background-color: burlywood;
+  background-color: rgb(230, 217, 201);
   width: 50%;
   margin: 0 auto;
 }
@@ -65,7 +70,7 @@ h1 {
   }
 
   .check input:checked ~ .checkmark {
-    background-color: #2196F3;
+    background-color: #79aeda;
   }
 
   .checkmark:after {
