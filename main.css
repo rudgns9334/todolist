@@ -17,14 +17,87 @@ h1 {
 
 }
 
+#time {
+  font-size: 50px;
+}
+#date {
+  font-size: 20px;
+}
+
+.todo {
+  width: 500px;
+  height: 32px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgb(233, 233, 233);
+}
+
+#today {
+  position: relative;
+  border: none;
+  display: inline-block;
+  padding: 15px 20px;
+  border-radius: 15px;
+  font-family: "paybooc-Light", sans-serif;
+  color: #1e6b7b;
+  background-color: aliceblue;
+}
+
+#today:hover {
+  border : 1px solid black;
+  transform: scale(1.1);
+}
+
+.button {
+  position: relative;
+  border: none;
+  display: inline-block;
+  padding: 15px 20px;
+  border-radius: 15px;
+  font-family: "paybooc-Light", sans-serif;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.button:hover{
+  border : 1px solid black;
+  letter-spacing: 2px;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.button:active {
+  transform: scale(1.5);
+}
+
+.btn-add {
+  background-color: aliceblue;
+  color: #1e6b7b;
+}
+
+.btn-selectdelete {
+  background-color: aliceblue;
+  color: #1e6b7b;
+}
+
+.btn-delete {
+  background-color: aliceblue;
+  color: #1e6b7b;
+}
+
 .input {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 120%;
+  left: 15%;
+  width: 1000px;
 }
 
 .container {
-  background-color: rgb(230, 217, 201);
+  background-color: aliceblue;
   position: absolute;
   top : 10%;
   left : 24%;
@@ -32,17 +105,20 @@ h1 {
 }
 .listcontainer {
   position: absolute;
-  top: 150%;
+  top: 200%;
   width: 1000px;
 }
 .list {
     background-color: white;
-    border: 1px solid black;
+    border: 1px solid gray;
+    border-radius: 30px 30px 30px 30px;
 }
+
 
 .check {
     display: block;
     position: relative;
+    width: 500px;
     padding-left: 35px;
     margin-bottom: 12px;
     cursor: pointer;
@@ -62,8 +138,24 @@ h1 {
     width: 0;
 }
 
+.check .date{
+  position: absolute;
+  opacity: 1;
+  top: 0;
+  left: 100%;
+  width: 130px;
+  height: 20px;
+}
+
 .value {
     text-decoration: none;
+}
+
+.check .deadline {
+  position: absolute;
+  top: -70%;
+  left: 100%;
+  width: 200px;
 }
 
 .checkmark {
@@ -107,4 +199,9 @@ h1 {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+  }
+
+  #map {
+    width: 500px;
+    height: 400px;
   }
