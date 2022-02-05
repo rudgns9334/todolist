@@ -1,10 +1,13 @@
-let inputButton = document.querySelector(".button").addEventListener("click",addTODO);
-let clearButton = document.querySelector(".clear").addEventListener("click",clear);
-let selectDeleteButton = document.querySelector(".s_clear").addEventListener("click",selectDelete);
+let inputButton = document.querySelector(".btn-add").addEventListener("click",addTODO);
+let clearButton = document.querySelector(".btn-delete").addEventListener("click",clear);
+let selectDeleteButton = document.querySelector(".btn-selectdelete").addEventListener("click",selectDelete);
 let key = 1;
 let todolist = [];
 
 window.onload = function(){
+    setClock();
+    setInterval(setClock,1000);
+    document.getElementById('today').value = new Date().toISOString().substring(0,10);
     if(localStorage.length==0){
         document.querySelector('ol').innerHTML=' ';
     }
@@ -13,7 +16,7 @@ window.onload = function(){
             for(j=0;j<localStorage.length;j++){
                 let value = JSON.parse(localStorage.getItem(localStorage.key(j)));
                 if(i==value.priority){
-                    todolist.push(value.value);
+                    todolist.push(value);
                     key = key + 1;
                     break;
                 }    
@@ -23,16 +26,35 @@ window.onload = function(){
     }
 }
 
+function setClock(){
+    var dateInfo = new Date(); 
+    var hour = modifyNumber(dateInfo.getHours());
+    var min = modifyNumber(dateInfo.getMinutes());
+    var sec = modifyNumber(dateInfo.getSeconds());
+    var year = dateInfo.getFullYear();
+    var month = dateInfo.getMonth()+1;
+    var date = dateInfo.getDate();
+    document.getElementById("time").innerHTML = hour + ":" + min  + ":" + sec;
+    document.getElementById("date").innerHTML = year + "년 " + month + "월 " + date + "일";
+}
+function modifyNumber(time){
+    if(parseInt(time)<10){
+        return "0"+ time;
+    }
+    else
+        return time;
+}
+
 function showTODO(e){
     let ol = document.querySelector('ol');
     let button;
     ol.innerHTML=' ';
     for(i=0;i<todolist.length;i++){
         let li = document.createElement('li');
-        li.innerHTML = '<label class="check"><input type="checkbox"><p class="value">'+todolist[i]+'</p><span class="checkmark"></span></label>';
+        li.innerHTML = '<label class="check"><input type="checkbox"><p class="value">'+todolist[i].value+'</p><p class="deadline">'+ todolist[i].deadline +'까지</p><span class="checkmark"></span></label>';
         ol.appendChild(li);
         //button = document.getElementsByClassName("b_modify");
-        //button[i].addEventListener("click",modifyTODO);
+        //button[i].addEventListener("click",modifyTODO);0.
     }
     
     document.querySelector(".list").getElementsByClassName.display = 'block';
@@ -64,20 +86,24 @@ function showTODO(e){
 
 function addTODO(e){
     e.preventDefault();
+    let tododate = document.getElementById('today');
     let todotask = document.querySelector(".todo");
-    let todo = {
-        'priority' : key,
-        'value' : todotask.value
+    if(todotask.value!=""){
+        let todo = {
+            'priority' : key,
+            'value' : todotask.value,
+            'deadline' : tododate.value
+        }
+        localStorage.setItem(todotask.value,JSON.stringify(todo));
+        todolist.push(todotask.value);
+        key = key+1;
+        let ol = document.querySelector('ol');
+        let li = document.createElement('li');
+        li.innerHTML = '<label class="check"><input type="checkbox" class="checkbox"><p class="value">'+todo.value+'</p><p class="deadline">'+ todo.deadline +'까지</p><span class="checkmark"></span></label>';
+        ol.appendChild(li);
+        document.querySelector(".list").getElementsByClassName.display = 'block';
+        todotask.value = '';
     }
-    localStorage.setItem(todotask.value,JSON.stringify(todo));
-    todolist.push(todotask.value);
-    key = key+1;
-    let ol = document.querySelector('ol');
-    let li = document.createElement('li');
-    li.innerHTML = '<label class="check"><input type="checkbox"><p class="value">'+todo.value+'</p><span class="checkmark"></span></label>';
-    ol.appendChild(li);
-    document.querySelector(".list").getElementsByClassName.display = 'block';
-    todotask.value = '';
 }
 
 function selectDelete(e){
@@ -101,9 +127,10 @@ function selectDelete(e){
     for(i=1;i<=remind;i++){
         let todo = {
             'priority' : i,
-            'value' : todolist[i-1]
+            'value' : todolist[i-1].value,
+            'deadline' : todolist[i-1].deadline
         }
-        localStorage.setItem(todolist[i-1],JSON.stringify(todo));
+        localStorage.setItem(todolist[i-1].value,JSON.stringify(todo));
     }
 }
 
