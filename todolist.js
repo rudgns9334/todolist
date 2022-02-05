@@ -20,43 +20,47 @@ window.onload = function(){
             }
         }
         showTODO();
-        console.log(todolist);
     }
 }
 
 function showTODO(e){
     let ol = document.querySelector('ol');
+    let button;
     ol.innerHTML=' ';
     for(i=0;i<todolist.length;i++){
         let li = document.createElement('li');
-        li.innerHTML = '<label class="check"><input type="checkbox"><p class="value">'+todolist[i]+'</p><span class="checkmark"></span><button type="submit" class="b_modify" value="'+ i+1 +'">수정</label>';
+        li.innerHTML = '<label class="check"><input type="checkbox"><p class="value">'+todolist[i]+'</p><span class="checkmark"></span></label>';
         ol.appendChild(li);
+        //button = document.getElementsByClassName("b_modify");
+        //button[i].addEventListener("click",modifyTODO);
     }
     
     document.querySelector(".list").getElementsByClassName.display = 'block';
-    document.querySelector(".b_modify").addEventListener("click",modifyTODO);
     
 }
 
-function modifyTODO(e){
-    e.preventDefault();
-    document.getElementById("modify").style.display="block";
-    document.querySelector(".b_update").addEventListener("click",function(){
-        updateTODO(e.target.value);
-    });
-}
+// function modifyTODO(e){
+//     e.preventDefault();
+//     let updatevalue = document.querySelector(".update");
+//     updatevalue.value = '';
+//     document.getElementById("modify").style.display="block";
+//     let update = document.getElementsByClassName("b_update");
+//     update[0].addEventListener("click",function(){
+//         updateTODO(e.target.value);
+//     });
+// }
 
-function updateTODO(value){
-    let updatevalue = document.querySelector(".update");
-    let todo = JSON.parse(localStorage.getItem(todolist[value-1]));
-    localStorage.removeItem(todolist[value-1]);
-    todo.value = updatevalue.value;
-    todolist[value-1] = updatevalue.value;
-    localStorage.setItem(updatevalue.value, JSON.stringify(todo));
-    showTODO();
-    updatevalue.value = '';
-    document.getElementById("modify").style.display="none";
-}
+// function updateTODO(value){
+//     let updatevalue = document.querySelector(".update");
+//     console.log(value);
+//     let todo = JSON.parse(localStorage.getItem(todolist[value]));
+//     localStorage.removeItem(todolist[value]);
+//     todo.value = updatevalue.value;
+//     todolist[value] = updatevalue.value;
+//     localStorage.setItem(updatevalue.value, JSON.stringify(todo));
+//     showTODO();
+//     document.getElementById("modify").style.display="none";
+// }
 
 function addTODO(e){
     e.preventDefault();
@@ -70,10 +74,9 @@ function addTODO(e){
     key = key+1;
     let ol = document.querySelector('ol');
     let li = document.createElement('li');
-    li.innerHTML = '<label class="check"><input type="checkbox"><p class="value">'+todo.value+'</p><span class="checkmark"></span><button type="submit" class="b_modify" value="'+ todo.priority +'">수정</label>';
+    li.innerHTML = '<label class="check"><input type="checkbox"><p class="value">'+todo.value+'</p><span class="checkmark"></span></label>';
     ol.appendChild(li);
     document.querySelector(".list").getElementsByClassName.display = 'block';
-    document.querySelector(".b_modify").addEventListener("click",modifyTODO);
     todotask.value = '';
 }
 
